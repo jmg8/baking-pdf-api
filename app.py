@@ -42,7 +42,7 @@ def generate_pdf():
                 "https://latexonline.cc/data",
                 files={"file": ("document.tex", f)},
                 data={"compiler": "pdflatex"},
-                timeout=10
+                timeout=25
             )
             response.raise_for_status()
 
