@@ -36,11 +36,18 @@ def generate_pdf():
 
     # Compile with LaTeX.Online
     with open(tex_file_path, "rb") as f:
-        response = requests.post(
-            "https://latexonline.cc/data",
-            files={"file": ("document.tex", f)},
-            data={"compiler": "pdflatex"}
-        )
+        try:
+            response = requests.post(
+                "https://latexonline.cc/data",
+                files={"file": ("document.tex", f)},
+                data={"compiler": "pdflatex"},
+                timeout=10
+            )
+            response.raise_for_status()
+        except Exception as e:
+            print("PDF generation error:", e)
+            return {"error": "PDF generation failed"}, 500
+
 
     if response.status_code == 200:
         pdf_path = tex_file_path.replace(".tex", ".pdf")
