@@ -1,8 +1,10 @@
 from flask import Flask, request, send_file
+from flask_cors import CORS
 import tempfile
 import requests
 
 app = Flask(__name__)
+CORS(app, origins=["https://bakingcalculator.net"])
 
 TEX_TEMPLATE = r"""
 \documentclass{article}
