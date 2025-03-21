@@ -4,7 +4,7 @@ import tempfile
 import requests
 
 app = Flask(__name__)
-CORS(app, origins=["https://bakingcalculator.net"])
+CORS(app, origins=["https://bakingcalculator.net"], supports_credentials=True)
 
 TEX_TEMPLATE = r"""
 \documentclass{article}
